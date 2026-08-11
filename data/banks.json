@@ -1,0 +1,44 @@
+[
+  {
+    "id": "ally",
+    "name": "Ally Bank",
+    "active": true,
+    "savingsUrl": "https://www.ally.com/bank/online-savings-account/",
+    "adapterId": "ally"
+  },
+  {
+    "id": "marcus",
+    "name": "Marcus by Goldman Sachs",
+    "active": true,
+    "savingsUrl": "https://www.marcus.com/us/en/savings/high-yield-savings",
+    "adapterId": "marcus"
+  },
+  {
+    "id": "discover",
+    "name": "Discover Bank",
+    "active": true,
+    "savingsUrl": "https://www.discover.com/online-banking/savings-account/",
+    "adapterId": "discover"
+  },
+  {
+    "id": "capital-one",
+    "name": "Capital One",
+    "active": true,
+    "savingsUrl": "https://www.capitalone.com/bank/savings-accounts/online-performance-savings-account/",
+    "adapterId": "capital-one"
+  },
+  {
+    "id": "synchrony",
+    "name": "Synchrony Bank",
+    "active": true,
+    "savingsUrl": "https://www.synchronybank.com/banking/high-yield-savings/",
+    "adapterId": "synchrony"
+  },
+  {
+    "id": "barclays",
+    "name": "Barclays",
+    "active": true,
+    "savingsUrl": "https://www.banking.barclaysus.com/online-savings.html",
+    "adapterId": "barclays"
+  }
+]

@@ -1,0 +1,32 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import TitleBar from "../components/TitleBar.astro";
+import KpiRow from "../components/KpiRow.astro";
+import Leaderboard from "../components/Leaderboard.astro";
+import ComparisonTable from "../components/ComparisonTable.astro";
+import DisclaimerFooter from "../components/DisclaimerFooter.astro";
+import { computeMetrics, getVerifiedSnapshots } from "../lib/data";
+
+const items = getVerifiedSnapshots();
+const metrics = computeMetrics(items);
+const mostRecentCheck = items
+  .map((i) => i.lastCheckedAt)
+  .sort()
+  .at(-1)!;
+---
+
+<BaseLayout
+  title="Compare Savings Rates"
+  description="Compare publicly available high-yield savings account rates from multiple banks in one place."
+>
+  <main class="mx-auto flex max-w-6xl flex-col gap-8 px-4 py-10 sm:px-8">
+    <TitleBar lastCheckedAt={mostRecentCheck} />
+    <KpiRow metrics={metrics} />
+    <Leaderboard items={items} />
+    <section class="flex flex-col gap-4">
+      <h2 class="text-lg font-bold text-ink">Full Savings Product Directory</h2>
+      <ComparisonTable items={items} />
+    </section>
+    <DisclaimerFooter />
+  </main>
+</BaseLayout>

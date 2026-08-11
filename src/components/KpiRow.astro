@@ -1,0 +1,36 @@
+---
+import KpiCard from "./KpiCard.astro";
+import type { DashboardMetrics } from "../lib/data";
+
+interface Props {
+  metrics: DashboardMetrics;
+}
+
+const { metrics } = Astro.props;
+const deltaText = `${metrics.averageApyDelta >= 0 ? "↑" : "↓"} ${Math.abs(metrics.averageApyDelta).toFixed(2)}% vs last check`;
+const trendArrow = metrics.overallTrend === "down" ? "↓" : "↑";
+const trendTone = metrics.overallTrend === "down" ? "negative" : "positive";
+---
+
+<div class="flex flex-col gap-4 sm:flex-row">
+  <KpiCard
+    label="Highest Rate"
+    value={`${metrics.highest.apy.toFixed(2)}% APY`}
+    pillText={metrics.highest.bankName}
+    caption={metrics.highest.productName}
+  />
+  <KpiCard
+    label="Average Rate"
+    value={`${metrics.averageApy.toFixed(2)}% APY`}
+    pillText={deltaText}
+    caption={`Calculated across ${metrics.bankCount} banks`}
+    tone={metrics.averageApyDelta >= 0 ? "positive" : "negative"}
+  />
+  <KpiCard
+    label="Rate Trend"
+    value={`${trendArrow} ${Math.abs(metrics.averageApyDelta).toFixed(2)}%`}
+    pillText={metrics.overallTrend === "down" ? "Downward shift" : "Upward shift"}
+    caption="Average movement since last check"
+    tone={trendTone}
+  />
+</div>

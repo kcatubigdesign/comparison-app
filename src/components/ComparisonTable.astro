@@ -1,0 +1,187 @@
+---
+import { formatCurrency, formatLastChecked, getAvatarColor, sortByApyDesc } from "../lib/data";
+import type { ProductSnapshot } from "../lib/types";
+
+interface Props {
+  items: ProductSnapshot[];
+}
+
+const { items } = Astro.props;
+const rows = sortByApyDesc(items);
+---
+
+<div class="rounded-2xl border border-border-subtle bg-panel">
+  <div class="overflow-x-auto">
+    <table class="w-full min-w-[720px] border-collapse text-left text-sm">
+      <thead>
+        <tr class="border-b border-border-subtle">
+          <th class="px-4 py-3 font-semibold text-ink-faint">
+            <button id="sort-bank" type="button" class="flex items-center gap-1 uppercase text-xs tracking-wide">
+              Bank
+              <span aria-hidden="true">⇅</span>
+            </button>
+          </th>
+          <th class="px-4 py-3 font-semibold uppercase text-xs tracking-wide text-ink-faint">
+            Product Name
+          </th>
+          <th class="px-4 py-3 font-semibold text-ink-faint">
+            <button id="sort-apy" type="button" class="flex items-center gap-1 uppercase text-xs tracking-wide">
+              APY
+              <span id="apy-icon" aria-hidden="true">↓</span>
+            </button>
+          </th>
+          <th class="px-4 py-3 font-semibold uppercase text-xs tracking-wide text-ink-faint">
+            Min. Deposit
+          </th>
+          <th class="px-4 py-3 font-semibold uppercase text-xs tracking-wide text-ink-faint">
+            Key Terms
+          </th>
+        </tr>
+      </thead>
+      <tbody id="table-body">
+        {
+          rows.map((item) => (
+            <>
+              <tr
+                class="main-row cursor-pointer border-b border-border-subtle last:border-b-0 hover:bg-surface"
+                data-group={item.bankId}
+                data-apy={item.apy}
+                data-bank={item.bankName}
+                data-expanded="false"
+              >
+                <td class="px-4 py-3">
+                  <div class="flex items-center gap-2">
+                    <span class="row-chevron text-ink-faint transition-transform" aria-hidden="true">
+                      ›
+                    </span>
+                    <span
+                      class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white"
+                      style={`background-color:${getAvatarColor(item.bankId)}`}
+                    >
+                      {item.bankName.charAt(0)}
+                    </span>
+                    <span class="font-semibold text-ink">{item.bankName}</span>
+                  </div>
+                </td>
+                <td class="px-4 py-3 text-ink-muted">{item.productName}</td>
+                <td class="px-4 py-3 font-bold text-positive">{item.apy.toFixed(2)}%</td>
+                <td class="px-4 py-3 text-ink-muted">{formatCurrency(item.minOpeningDeposit)}</td>
+                <td class="px-4 py-3 text-ink-muted">{item.keyTerms}</td>
+              </tr>
+              <tr class="detail-row hidden bg-surface" data-group={item.bankId}>
+                <td colspan="5" class="px-4 py-4">
+                  <dl class="grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-3 lg:grid-cols-6">
+                    <div>
+                      <dt class="text-xs uppercase tracking-wide text-ink-faint">Interest Rate</dt>
+                      <dd class="text-sm text-ink">
+                        {item.interestRate !== null ? `${item.interestRate.toFixed(2)}%` : "Not published"}
+                      </dd>
+                    </div>
+                    <div>
+                      <dt class="text-xs uppercase tracking-wide text-ink-faint">Min. Balance</dt>
+                      <dd class="text-sm text-ink">{formatCurrency(item.minBalance)}</dd>
+                    </div>
+                    <div>
+                      <dt class="text-xs uppercase tracking-wide text-ink-faint">Promo Bonus</dt>
+                      <dd class="text-sm text-ink">{item.promoBonus ?? "None currently listed"}</dd>
+                    </div>
+                    <div>
+                      <dt class="text-xs uppercase tracking-wide text-ink-faint">Offer Expires</dt>
+                      <dd class="text-sm text-ink">{item.offerExpirationDate ?? "No expiration listed"}</dd>
+                    </div>
+                    <div>
+                      <dt class="text-xs uppercase tracking-wide text-ink-faint">Last Checked</dt>
+                      <dd class="text-sm text-ink">{formatLastChecked(item.lastCheckedAt)}</dd>
+                    </div>
+                    <div>
+                      <dt class="text-xs uppercase tracking-wide text-ink-faint">Source</dt>
+                      <dd class="text-sm">
+                        <a
+                          href={item.sourceUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="text-negative underline underline-offset-2"
+                        >
+                          View on bank site ↗
+                        </a>
+                      </dd>
+                    </div>
+                  </dl>
+                </td>
+              </tr>
+            </>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  const tbody = document.getElementById("table-body")!;
+  const bankHeader = document.getElementById("sort-bank")!;
+  const apyHeader = document.getElementById("sort-apy")!;
+  const apyIcon = document.getElementById("apy-icon")!;
+
+  type Dir = "asc" | "desc";
+  let apyDir: Dir = "desc";
+  let bankDir: Dir | null = null;
+
+  function getPairs() {
+    const mains = Array.from(tbody.querySelectorAll<HTMLTableRowElement>("tr.main-row"));
+    return mains.map((main) => ({
+      main,
+      detail: tbody.querySelector<HTMLTableRowElement>(
+        `tr.detail-row[data-group="${main.dataset.group}"]`
+      ),
+    }));
+  }
+
+  function applySort(key: "apy" | "bank", dir: Dir) {
+    const pairs = getPairs();
+    pairs.sort((a, b) => {
+      if (key === "apy") {
+        const av = parseFloat(a.main.dataset.apy ?? "0");
+        const bv = parseFloat(b.main.dataset.apy ?? "0");
+        return dir === "asc" ? av - bv : bv - av;
+      }
+      const av = (a.main.dataset.bank ?? "").toLowerCase();
+      const bv = (b.main.dataset.bank ?? "").toLowerCase();
+      if (av < bv) return dir === "asc" ? -1 : 1;
+      if (av > bv) return dir === "asc" ? 1 : -1;
+      return 0;
+    });
+    for (const { main, detail } of pairs) {
+      tbody.appendChild(main);
+      if (detail) tbody.appendChild(detail);
+    }
+  }
+
+  apyHeader.addEventListener("click", () => {
+    apyDir = apyDir === "desc" ? "asc" : "desc";
+    bankDir = null;
+    applySort("apy", apyDir);
+    apyIcon.textContent = apyDir === "desc" ? "↓" : "↑";
+  });
+
+  bankHeader.addEventListener("click", () => {
+    bankDir = bankDir === "asc" ? "desc" : "asc";
+    apyDir = null as unknown as Dir;
+    applySort("bank", bankDir);
+  });
+
+  tbody.addEventListener("click", (event) => {
+    const target = event.target as HTMLElement;
+    if (target.closest("a")) return;
+    const row = target.closest<HTMLTableRowElement>("tr.main-row");
+    if (!row) return;
+    const group = row.dataset.group;
+    const detail = tbody.querySelector<HTMLTableRowElement>(`tr.detail-row[data-group="${group}"]`);
+    if (!detail) return;
+    const expanded = row.dataset.expanded === "true";
+    row.dataset.expanded = expanded ? "false" : "true";
+    detail.classList.toggle("hidden", expanded);
+    const chevron = row.querySelector<HTMLElement>(".row-chevron");
+    if (chevron) chevron.style.transform = expanded ? "" : "rotate(90deg)";
+  });
+</script>

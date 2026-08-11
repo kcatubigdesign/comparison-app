@@ -1,0 +1,48 @@
+---
+interface Props {
+  label: string;
+  value: string;
+  pillText: string;
+  caption: string;
+  tone?: "positive" | "negative";
+}
+
+const { label, value, pillText, caption, tone = "positive" } = Astro.props;
+const pillClass =
+  tone === "positive"
+    ? "bg-positive-soft text-positive"
+    : "bg-blue-50 text-negative";
+---
+
+<div class="flex-1 rounded-2xl border border-border-subtle bg-panel p-6">
+  <div class="flex items-center justify-between">
+    <span class="text-xs font-semibold uppercase tracking-wide text-ink-faint">
+      {label}
+    </span>
+    <span class="flex h-8 w-8 items-center justify-center rounded-full bg-border-subtle">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="14"
+        height="14"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="text-ink-muted"
+      >
+        <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+      </svg>
+    </span>
+  </div>
+  <div class="mt-5 flex flex-col gap-3">
+    <p class="text-3xl font-extrabold text-ink sm:text-[36px]">{value}</p>
+    <div class="flex flex-wrap items-center gap-2 text-sm">
+      <span class={`rounded-md px-2 py-0.5 text-xs font-semibold ${pillClass}`}>
+        {pillText}
+      </span>
+      <span class="text-ink-muted">{caption}</span>
+    </div>
+  </div>
+</div>
