@@ -9,6 +9,11 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   site: "https://kcatubigdesign.github.io",
   base: "/comparison-app",
+  server: {
+    // Respect an externally-assigned PORT (e.g. from a preview tool
+    // avoiding a port conflict) instead of always demanding 4321.
+    port: process.env.PORT ? Number(process.env.PORT) : 4321,
+  },
   vite: {
     plugins: [tailwindcss()],
   },
