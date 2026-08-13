@@ -6,19 +6,25 @@ project history/chat for the full architecture and milestone plan.
 
 ## Status: Milestone 2
 
-The public site (`src/`) still reads from **hand-written sample data** in
-`data/current/savings.json` — that hasn't changed, and won't until
-Milestone 5 ("wire site to real data"). What's new is a real, working
-crawler in `crawler/` that visits Ally Bank's actual savings page and
-extracts the live APY, proving the extraction pipeline end to end. It
-writes its own separate file per bank (`data/current/{bankId}.json`) so it
-can never collide with or corrupt the frontend's sample data.
+The public site (`src/`) reads from `data/current/savings.json`. The
+real, structural wiring of crawler output into the site is still
+Milestone 5 — but as each bank gets a real adapter below, we've been
+hand-correcting that bank's entry in `savings.json` to match the real
+crawled numbers (rather than leaving a known-wrong fictional Figma-mock
+number live on the page). Banks without an adapter yet are still the
+original mockup figures.
 
-Only Ally Bank has an adapter so far — the crawler skips every other bank
-in `data/banks.json` with a clear `no_adapter` log entry rather than
-guessing at extraction logic for pages nobody's inspected yet. Adding a
-bank is: write `crawler/adapters/{id}.ts`, register it in
-`crawler/adapters/index.ts`, done — the engine itself never changes.
+There's a real, working crawler in `crawler/` — currently with adapters
+for **Ally Bank** and **Marcus by Goldman Sachs**, each visiting the
+bank's actual savings page and extracting the live APY. The crawler
+writes its own separate file per bank (`data/current/{bankId}.json`) so
+it can never collide with or corrupt the frontend's `savings.json`.
+
+Banks without an adapter yet are skipped with a clear `no_adapter` log
+entry rather than guessing at extraction logic for pages nobody's
+inspected yet. Adding a bank is: write `crawler/adapters/{id}.ts`,
+register it in `crawler/adapters/index.ts`, done — the engine itself
+never changes.
 
 Everything the crawler produces is stamped `status: "needs_review"`.
 Nothing gets promoted to `verified` automatically — that's what the
