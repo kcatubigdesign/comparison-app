@@ -15,10 +15,18 @@ number live on the page). Banks without an adapter yet are still the
 original mockup figures.
 
 There's a real, working crawler in `crawler/` — currently with adapters
-for **Ally Bank** and **Marcus by Goldman Sachs**, each visiting the
-bank's actual savings page and extracting the live APY. The crawler
-writes its own separate file per bank (`data/current/{bankId}.json`) so
-it can never collide with or corrupt the frontend's `savings.json`.
+for **Ally Bank**, **Marcus by Goldman Sachs**, and **Capital One**, each
+visiting the bank's actual savings page and extracting the live APY. The
+crawler writes its own separate file per bank (`data/current/{bankId}.json`)
+so it can never collide with or corrupt the frontend's `savings.json`.
+
+**Discover Bank is deactivated** (`active: false` in `data/banks.json`,
+with a `note` field explaining why): its savings page now redirects
+entirely to Capital One's product with a "Discover is now part of
+Capital One" banner — it's not an independently priced product anymore,
+so we don't list it separately. This is exactly the "a product
+disappears from a page" scenario the status system was designed to
+handle, just discovered a milestone earlier than expected.
 
 Banks without an adapter yet are skipped with a clear `no_adapter` log
 entry rather than guessing at extraction logic for pages nobody's

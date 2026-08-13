@@ -1,0 +1,16 @@
+{
+  "bankId": "capital-one",
+  "bankName": "Capital One",
+  "productName": "360 Performance Savings",
+  "apy": 3,
+  "interestRate": null,
+  "minOpeningDeposit": 0,
+  "minBalance": null,
+  "promoBonus": null,
+  "offerExpirationDate": null,
+  "keyTerms": "There are no fees to open or keep your account. There’s no minimum balance required to maintain your account.",
+  "sourceUrl": "https://www.capitalone.com/bank/savings-accounts/online-performance-savings-account/",
+  "lastCheckedAt": "2026-08-13T03:12:20.689Z",
+  "status": "needs_review",
+  "recentApyTrend": []
+}

@@ -32,36 +32,20 @@
     "recentApyTrend": [3.40]
   },
   {
-    "bankId": "discover",
-    "bankName": "Discover Bank",
-    "productName": "Online Savings",
-    "apy": 5.25,
-    "interestRate": null,
-    "minOpeningDeposit": 0,
-    "minBalance": null,
-    "promoBonus": null,
-    "offerExpirationDate": null,
-    "keyTerms": "No minimum, award-winning support",
-    "sourceUrl": "https://www.discover.com/online-banking/savings-account/",
-    "lastCheckedAt": "2026-08-12T09:00:00Z",
-    "status": "verified",
-    "recentApyTrend": [5.05, 5.10, 5.18, 5.22, 5.25]
-  },
-  {
     "bankId": "capital-one",
     "bankName": "Capital One",
     "productName": "360 Performance Savings",
-    "apy": 5.15,
+    "apy": 3.00,
     "interestRate": null,
     "minOpeningDeposit": 0,
     "minBalance": null,
     "promoBonus": null,
     "offerExpirationDate": null,
-    "keyTerms": "$0 monthly fee, compounded daily",
+    "keyTerms": "There are no fees to open or keep your account. There’s no minimum balance required to maintain your account.",
     "sourceUrl": "https://www.capitalone.com/bank/savings-accounts/online-performance-savings-account/",
-    "lastCheckedAt": "2026-08-12T09:00:00Z",
+    "lastCheckedAt": "2026-08-13T03:11:48Z",
     "status": "verified",
-    "recentApyTrend": [5.30, 5.30, 5.15, 5.15, 5.15]
+    "recentApyTrend": [3.00]
   },
   {
     "bankId": "synchrony",

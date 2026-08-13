@@ -16,9 +16,10 @@
   {
     "id": "discover",
     "name": "Discover Bank",
-    "active": true,
+    "active": false,
     "savingsUrl": "https://www.discover.com/online-banking/savings-account/",
-    "adapterId": "discover"
+    "adapterId": "discover",
+    "note": "Discover's savings page now redirects fully to Capital One's 360 Performance Savings product (\"Discover is now part of Capital One\" banner, checked 2026-08-13) — no longer an independently priced product, so we don't crawl or list it separately. See the capital-one entry instead."
   },
   {
     "id": "capital-one",

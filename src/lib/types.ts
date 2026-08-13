@@ -8,6 +8,8 @@ export interface BankConfig {
   active: boolean;
   savingsUrl: string;
   adapterId: string;
+  /** Why a bank is inactive, when it's not simply "not built yet". */
+  note?: string;
 }
 
 export type RateStatus = "verified" | "needs_review" | "failed";
