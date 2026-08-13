@@ -4,17 +4,39 @@ A public comparison site for savings account rates, built as a static site
 (Astro) that will eventually be fed by a scheduled Playwright crawler. See
 project history/chat for the full architecture and milestone plan.
 
-## Status: Milestone 1
+## Status: Milestone 2
 
-This is the static site shell, styled to match the Figma design, reading
-from **hand-written sample data** in `data/current/savings.json` — there is
-no crawler yet. The sample data mirrors the numbers from the original Figma
-mockup so the UI can be verified against the design.
+The public site (`src/`) still reads from **hand-written sample data** in
+`data/current/savings.json` — that hasn't changed, and won't until
+Milestone 5 ("wire site to real data"). What's new is a real, working
+crawler in `crawler/` that visits Ally Bank's actual savings page and
+extracts the live APY, proving the extraction pipeline end to end. It
+writes its own separate file per bank (`data/current/{bankId}.json`) so it
+can never collide with or corrupt the frontend's sample data.
 
-`data/banks.json` is the config file the crawler will read from once it
-exists (Milestone 2+). The `savingsUrl` values in it are best-guess public
-URLs for each bank's savings page — **not yet verified** — double-check them
-before Milestone 2 crawler work begins.
+Only Ally Bank has an adapter so far — the crawler skips every other bank
+in `data/banks.json` with a clear `no_adapter` log entry rather than
+guessing at extraction logic for pages nobody's inspected yet. Adding a
+bank is: write `crawler/adapters/{id}.ts`, register it in
+`crawler/adapters/index.ts`, done — the engine itself never changes.
+
+Everything the crawler produces is stamped `status: "needs_review"`.
+Nothing gets promoted to `verified` automatically — that's what the
+validation layer (Milestone 3) is for.
+
+The `savingsUrl` values in `data/banks.json` for banks without an adapter
+yet are still best-guess and unverified — check them before building their
+adapters.
+
+### Running the crawler
+
+```bash
+npx playwright install chromium   # one-time, downloads the browser binary
+npm run crawl
+```
+
+This writes `data/current/{bankId}.json` for each bank that has an
+adapter, plus a run log to `data/crawl-logs/`.
 
 ## Getting started
 
@@ -46,11 +68,17 @@ Output goes to `dist/`.
   /pages        Routes — index.astro is the homepage
   /styles       Global CSS + design tokens (global.css)
 /data
-  banks.json         Bank config the crawler will read (id, active, url, adapter)
-  /current           Latest snapshot per bank/product (sample data for now)
-  /history           (not yet used — historical rate tracking, Milestone 4)
-  /crawl-logs        (not yet used — crawl run logs, Milestone 2+)
-/crawler        (not yet built — Milestone 2)
+  banks.json           Bank config the crawler reads (id, active, url, adapter)
+  savings.json         (via /current) Hand-written sample data — powers the live site for now
+  /current
+    savings.json       Sample data the frontend actually reads (Milestone 1)
+    {bankId}.json       Real crawled snapshot per bank, e.g. ally.json (Milestone 2+)
+  /history             (not yet used — historical rate tracking, Milestone 4)
+  /crawl-logs          Per-run crawl logs (outcome + errors per bank)
+/crawler
+  /core                engine.ts (orchestration), types.ts (adapter interface)
+  /adapters            One file per bank (ally.ts, ...) + index.ts registry
+  run.ts               Entry point — `npm run crawl`
 ```
 
 ## Design tokens

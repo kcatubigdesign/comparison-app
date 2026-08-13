@@ -1,0 +1,16 @@
+{
+  "bankId": "ally",
+  "bankName": "Ally Bank",
+  "productName": "Savings Account",
+  "apy": 3,
+  "interestRate": null,
+  "minOpeningDeposit": null,
+  "minBalance": null,
+  "promoBonus": null,
+  "offerExpirationDate": null,
+  "keyTerms": "No monthly maintenance fees or minimum balance requirements.",
+  "sourceUrl": "https://www.ally.com/bank/online-savings-account/",
+  "lastCheckedAt": "2026-08-13T02:32:10.830Z",
+  "status": "needs_review",
+  "recentApyTrend": []
+}

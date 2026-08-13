@@ -1,0 +1,44 @@
+[
+  {
+    "bankId": "ally",
+    "startedAt": "2026-08-13T02:32:07.339Z",
+    "finishedAt": "2026-08-13T02:32:10.830Z",
+    "outcome": "success",
+    "message": null
+  },
+  {
+    "bankId": "marcus",
+    "startedAt": "2026-08-13T02:32:10.890Z",
+    "finishedAt": "2026-08-13T02:32:10.890Z",
+    "outcome": "no_adapter",
+    "message": "No adapter registered for adapterId \"marcus\""
+  },
+  {
+    "bankId": "discover",
+    "startedAt": "2026-08-13T02:32:10.890Z",
+    "finishedAt": "2026-08-13T02:32:10.890Z",
+    "outcome": "no_adapter",
+    "message": "No adapter registered for adapterId \"discover\""
+  },
+  {
+    "bankId": "capital-one",
+    "startedAt": "2026-08-13T02:32:10.890Z",
+    "finishedAt": "2026-08-13T02:32:10.890Z",
+    "outcome": "no_adapter",
+    "message": "No adapter registered for adapterId \"capital-one\""
+  },
+  {
+    "bankId": "synchrony",
+    "startedAt": "2026-08-13T02:32:10.890Z",
+    "finishedAt": "2026-08-13T02:32:10.890Z",
+    "outcome": "no_adapter",
+    "message": "No adapter registered for adapterId \"synchrony\""
+  },
+  {
+    "bankId": "barclays",
+    "startedAt": "2026-08-13T02:32:10.890Z",
+    "finishedAt": "2026-08-13T02:32:10.890Z",
+    "outcome": "no_adapter",
+    "message": "No adapter registered for adapterId \"barclays\""
+  }
+]
