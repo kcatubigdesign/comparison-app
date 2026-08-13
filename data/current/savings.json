@@ -134,5 +134,22 @@
     "lastCheckedAt": "2026-08-13T05:07:23Z",
     "status": "verified",
     "recentApyTrend": [4.21]
+  },
+  {
+    "bankId": "etrade",
+    "bankName": "E*TRADE",
+    "productName": "Premium Savings Account",
+    "apy": 4.00,
+    "baseApy": 3.50,
+    "interestRate": null,
+    "minOpeningDeposit": 0,
+    "minBalance": null,
+    "promoBonus": "$400 cash bonus + 4.00% APY for 6 months",
+    "offerExpirationDate": null,
+    "keyTerms": "Guaranteed 4.00% APY for 6 months plus a $400 cash bonus on a new Premium Savings Account. Reverts to the base rate (currently 3.50%) afterward.",
+    "sourceUrl": "https://us.etrade.com/bank/premium-savings-account",
+    "lastCheckedAt": "2026-08-13T05:23:38Z",
+    "status": "verified",
+    "recentApyTrend": [4.00]
   }
 ]

@@ -4,7 +4,8 @@
     "name": "Ally Bank",
     "active": true,
     "savingsUrl": "https://www.ally.com/bank/online-savings-account/",
-    "adapterId": "ally"
+    "adapterId": "ally",
+    "note": "Started intermittently failing (rate element attached but not visible within 15s, then a 5-minute hang on a completely fresh browser tab) after this dev session's unusually heavy traffic to ally.com — likely soft rate-limiting or bot detection on their end, not a real page-structure change. A real scheduled crawl (once a day) shouldn't trigger this; flagging in case it recurs. Existing data below is from the last successful crawl and still accurate."
   },
   {
     "id": "marcus",
@@ -75,5 +76,13 @@
     "savingsUrl": "https://www.axosbank.com/personal/bank/savings-accounts",
     "adapterId": "axos",
     "note": "Page has two tabbed products, both present in the DOM at once: Axos ONE (checking+savings bundle, up to 4.21% APY on savings) and Summit Savings (standalone, no minimums, 3.75% APY). apy tracks Axos ONE (top), baseApy tracks Summit Savings (ongoing, no bundle required). Checked 2026-08-13."
+  },
+  {
+    "id": "etrade",
+    "name": "E*TRADE",
+    "active": true,
+    "savingsUrl": "https://us.etrade.com/bank/premium-savings-account",
+    "adapterId": "etrade",
+    "note": "Premium Savings Account offered by Morgan Stanley Private Bank. Cleanest source yet: page states promo APY, base APY, dollar bonus, expiration date, and promo code as plain sentences. Checked 2026-08-13."
   }
 ]

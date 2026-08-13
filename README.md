@@ -16,10 +16,17 @@ original mockup figures.
 
 There's a real, working crawler in `crawler/` with adapters for **Ally
 Bank**, **Marcus by Goldman Sachs**, **Capital One**, **Barclays**,
-**Betterment**, and **Wealthfront**, each visiting the bank's actual
-savings/cash page and extracting the live APY. The crawler writes its
-own separate file per bank (`data/current/{bankId}.json`) so it can
-never collide with or corrupt the frontend's `savings.json`.
+**Betterment**, **Wealthfront**, **Flagstar Bank**, **Axos Bank**, and
+**E*TRADE**, each visiting the bank's actual savings/cash page and
+extracting the live APY. The crawler writes its own separate file per
+bank (`data/current/{bankId}.json`) so it can never collide with or
+corrupt the frontend's `savings.json`.
+
+**Ally has been intermittently failing** after this session's unusually
+heavy traffic to ally.com (dozens of hits during development) — see the
+`note` on its `banks.json` entry. Likely soft rate-limiting on Ally's
+end, not a real selector break; the existing crawled data is still
+accurate, just worth knowing about if it recurs.
 
 **`apy` vs `baseApy`**: several banks (Betterment, Wealthfront) advertise
 a *top* rate that only applies with a promotional boost stacked on top
@@ -86,8 +93,13 @@ multiple comparable products worth tracking separately (e.g. a savings
 account *and* a CD, or multiple savings tiers at different balance
 thresholds) — eventually a bank entry should be able to point at
 several URLs/product types rather than just one, at the user's
-request. Flagging this now rather than waiting for it to become a
-bigger refactor later.
+request. `apy`/`baseApy` already covers the *rate* side of this
+(promo vs. ongoing, whether that's two tiers of the same product like
+Flagstar/E*TRADE or two differently-named products like Axos), but a
+genuinely separate product line (e.g. a CD alongside a savings
+account) still needs its own row, which the current one-bank-one-URL
+config can't express yet. Flagging now rather than waiting for it to
+become a bigger refactor later.
 
 ### Running the crawler
 

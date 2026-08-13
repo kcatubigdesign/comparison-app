@@ -8,6 +8,7 @@ import { bettermentAdapter } from "./betterment";
 import { wealthfrontAdapter } from "./wealthfront";
 import { flagstarAdapter } from "./flagstar";
 import { axosAdapter } from "./axos";
+import { etradeAdapter } from "./etrade";
 
 // Registry the engine looks up by `adapterId` from data/banks.json.
 // Adding a new bank is: write crawler/adapters/{id}.ts, register it
@@ -23,4 +24,5 @@ export const adapters: Record<string, BankAdapter> = {
   wealthfront: wealthfrontAdapter,
   flagstar: flagstarAdapter,
   axos: axosAdapter,
+  etrade: etradeAdapter,
 };

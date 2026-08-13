@@ -1,0 +1,65 @@
+[
+  {
+    "bankId": "ally",
+    "startedAt": "2026-08-13T05:34:27.913Z",
+    "finishedAt": "2026-08-13T05:42:39.728Z",
+    "outcome": "extraction_failed",
+    "message": "locator.waitFor: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator('div[class*=\"Rate_rateDescription\"]').first() to be visible\n"
+  },
+  {
+    "bankId": "marcus",
+    "startedAt": "2026-08-13T05:42:39.902Z",
+    "finishedAt": "2026-08-13T05:42:49.413Z",
+    "outcome": "success",
+    "message": null
+  },
+  {
+    "bankId": "capital-one",
+    "startedAt": "2026-08-13T05:42:49.437Z",
+    "finishedAt": "2026-08-13T05:43:05.651Z",
+    "outcome": "success",
+    "message": null
+  },
+  {
+    "bankId": "barclays",
+    "startedAt": "2026-08-13T05:43:06.182Z",
+    "finishedAt": "2026-08-13T05:43:10.948Z",
+    "outcome": "success",
+    "message": null
+  },
+  {
+    "bankId": "betterment",
+    "startedAt": "2026-08-13T05:43:10.970Z",
+    "finishedAt": "2026-08-13T05:43:16.175Z",
+    "outcome": "success",
+    "message": null
+  },
+  {
+    "bankId": "wealthfront",
+    "startedAt": "2026-08-13T05:43:16.236Z",
+    "finishedAt": "2026-08-13T05:43:25.826Z",
+    "outcome": "success",
+    "message": null
+  },
+  {
+    "bankId": "flagstar",
+    "startedAt": "2026-08-13T05:43:25.864Z",
+    "finishedAt": "2026-08-13T05:43:30.859Z",
+    "outcome": "success",
+    "message": null
+  },
+  {
+    "bankId": "axos",
+    "startedAt": "2026-08-13T05:43:31.036Z",
+    "finishedAt": "2026-08-13T05:50:20.882Z",
+    "outcome": "success",
+    "message": null
+  },
+  {
+    "bankId": "etrade",
+    "startedAt": "2026-08-13T05:50:20.890Z",
+    "finishedAt": "2026-08-13T05:50:24.427Z",
+    "outcome": "success",
+    "message": null
+  }
+]
