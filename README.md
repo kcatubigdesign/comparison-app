@@ -14,19 +14,35 @@ crawled numbers (rather than leaving a known-wrong fictional Figma-mock
 number live on the page). Banks without an adapter yet are still the
 original mockup figures.
 
-There's a real, working crawler in `crawler/` — currently with adapters
-for **Ally Bank**, **Marcus by Goldman Sachs**, and **Capital One**, each
-visiting the bank's actual savings page and extracting the live APY. The
-crawler writes its own separate file per bank (`data/current/{bankId}.json`)
-so it can never collide with or corrupt the frontend's `savings.json`.
+There's a real, working crawler in `crawler/` with adapters for **Ally
+Bank**, **Marcus by Goldman Sachs**, **Capital One**, and **Barclays**,
+each visiting the bank's actual savings page and extracting the live
+APY (and, for Barclays, a real promo bonus + expiration date — our
+first hit on those fields). The crawler writes its own separate file
+per bank (`data/current/{bankId}.json`) so it can never collide with or
+corrupt the frontend's `savings.json`.
 
-**Discover Bank is deactivated** (`active: false` in `data/banks.json`,
-with a `note` field explaining why): its savings page now redirects
-entirely to Capital One's product with a "Discover is now part of
-Capital One" banner — it's not an independently priced product anymore,
-so we don't list it separately. This is exactly the "a product
-disappears from a page" scenario the status system was designed to
-handle, just discovered a milestone earlier than expected.
+Two banks are not fully wired up, for real reasons worth knowing about
+rather than papering over — both documented via a `note` field on their
+`data/banks.json` entry:
+
+- **Discover Bank is deactivated** (`active: false`): its savings page
+  now redirects entirely to Capital One's product with a "Discover is
+  now part of Capital One" banner — it's not an independently priced
+  product anymore, so we don't list it separately. This is exactly the
+  "a product disappears from a page" scenario the status system was
+  designed to handle, just discovered a milestone earlier than
+  expected.
+- **Synchrony Bank is still active but its crawl currently fails**:
+  the site is protected by Akamai Bot Manager, which blocks or stalls
+  the crawler's connection. We're not attempting to bypass it (no
+  stealth/fingerprint-spoofing tricks) — that's a deliberate line, not
+  a gap to fix. It fails honestly and logs `extraction_failed` each
+  run rather than silently succeeding with bad data. Synchrony's entry
+  in the frontend's sample data is therefore still the original,
+  unverified Figma-mock placeholder — worth knowing since every other
+  bank's real rate came in noticeably lower than its mock value, so
+  this one's plausibly stale too.
 
 Banks without an adapter yet are skipped with a clear `no_adapter` log
 entry rather than guessing at extraction logic for pages nobody's
@@ -38,9 +54,10 @@ Everything the crawler produces is stamped `status: "needs_review"`.
 Nothing gets promoted to `verified` automatically — that's what the
 validation layer (Milestone 3) is for.
 
-The `savingsUrl` values in `data/banks.json` for banks without an adapter
-yet are still best-guess and unverified — check them before building their
-adapters.
+Several `savingsUrl` values in `data/banks.json` turned out to be stale
+during this pass (bank sites redirect and consolidate more often than
+you'd expect) and were corrected as each adapter was built, with a
+`note` explaining what changed.
 
 ### Running the crawler
 

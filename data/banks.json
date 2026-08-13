@@ -32,14 +32,16 @@
     "id": "synchrony",
     "name": "Synchrony Bank",
     "active": true,
-    "savingsUrl": "https://www.synchronybank.com/banking/high-yield-savings/",
-    "adapterId": "synchrony"
+    "savingsUrl": "https://www.synchrony.com/banking/high-yield-savings/",
+    "adapterId": "synchrony",
+    "note": "Old synchronybank.com URL now 301-redirects here (brand consolidated to synchrony.com, checked 2026-08-13). Site is protected by Akamai Bot Manager (_abck cookie) — the crawler currently fails to load this page (HTTP/2 protocol error, then a hang/timeout after forcing HTTP/1.1). Left active since it's a legitimate crawl target, not a data problem — we're not attempting to bypass the bot protection, so this will keep failing honestly until/unless that changes."
   },
   {
     "id": "barclays",
     "name": "Barclays",
     "active": true,
-    "savingsUrl": "https://www.banking.barclaysus.com/online-savings.html",
-    "adapterId": "barclays"
+    "savingsUrl": "https://banking.us.barclays/tiered-savings.html",
+    "adapterId": "barclays",
+    "note": "Old banking.barclaysus.com/online-savings.html URL now redirects to a homepage listing three savings products (Tiered Savings, Online Savings, Online CDs). Pointed this at the dedicated Tiered Savings page instead — it's the one Barclays is actively promoting, checked 2026-08-13."
   }
 ]

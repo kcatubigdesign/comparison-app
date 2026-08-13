@@ -26,7 +26,12 @@ export async function runCrawl(adapters: Record<string, BankAdapter>) {
   mkdirSync(CURRENT_DIR, { recursive: true });
   mkdirSync(CRAWL_LOGS_DIR, { recursive: true });
 
-  const browser = await chromium.launch();
+  // --disable-http2: at least one target site (Synchrony) rejects the
+  // HTTP/2 connection headless Chromium negotiates with a hard
+  // ERR_HTTP2_PROTOCOL_ERROR, even though it loads fine in a normal
+  // browser. Forcing HTTP/1.1 works around it without any downside
+  // for the other sites.
+  const browser = await chromium.launch({ args: ["--disable-http2"] });
   const context = await browser.newContext({ userAgent: USER_AGENT });
   const logs: CrawlLogEntry[] = [];
 
