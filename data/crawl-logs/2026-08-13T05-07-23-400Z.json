@@ -1,0 +1,58 @@
+[
+  {
+    "bankId": "ally",
+    "startedAt": "2026-08-13T05:06:55.510Z",
+    "finishedAt": "2026-08-13T05:06:58.698Z",
+    "outcome": "success",
+    "message": null
+  },
+  {
+    "bankId": "marcus",
+    "startedAt": "2026-08-13T05:06:58.901Z",
+    "finishedAt": "2026-08-13T05:07:02.002Z",
+    "outcome": "success",
+    "message": null
+  },
+  {
+    "bankId": "capital-one",
+    "startedAt": "2026-08-13T05:07:02.008Z",
+    "finishedAt": "2026-08-13T05:07:07.195Z",
+    "outcome": "success",
+    "message": null
+  },
+  {
+    "bankId": "barclays",
+    "startedAt": "2026-08-13T05:07:07.275Z",
+    "finishedAt": "2026-08-13T05:07:10.198Z",
+    "outcome": "success",
+    "message": null
+  },
+  {
+    "bankId": "betterment",
+    "startedAt": "2026-08-13T05:07:10.207Z",
+    "finishedAt": "2026-08-13T05:07:13.022Z",
+    "outcome": "success",
+    "message": null
+  },
+  {
+    "bankId": "wealthfront",
+    "startedAt": "2026-08-13T05:07:13.023Z",
+    "finishedAt": "2026-08-13T05:07:17.887Z",
+    "outcome": "success",
+    "message": null
+  },
+  {
+    "bankId": "flagstar",
+    "startedAt": "2026-08-13T05:07:17.907Z",
+    "finishedAt": "2026-08-13T05:07:20.492Z",
+    "outcome": "success",
+    "message": null
+  },
+  {
+    "bankId": "axos",
+    "startedAt": "2026-08-13T05:07:20.499Z",
+    "finishedAt": "2026-08-13T05:07:23.329Z",
+    "outcome": "success",
+    "message": null
+  }
+]

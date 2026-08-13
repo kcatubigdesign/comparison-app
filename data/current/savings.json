@@ -117,5 +117,22 @@
     "lastCheckedAt": "2026-08-13T05:01:42Z",
     "status": "verified",
     "recentApyTrend": [3.75]
+  },
+  {
+    "bankId": "axos",
+    "bankName": "Axos Bank",
+    "productName": "Axos ONE Savings",
+    "apy": 4.21,
+    "baseApy": 3.75,
+    "interestRate": null,
+    "minOpeningDeposit": 0,
+    "minBalance": null,
+    "promoBonus": "Axos ONE bundle: up to 4.21% APY on savings (requires linked Axos ONE Checking)",
+    "offerExpirationDate": null,
+    "keyTerms": "Axos ONE is a checking + savings bundle — no monthly maintenance, balance, opening, or overdraft fees. The standalone Summit Savings account (no bundle required) earns 3.75% APY with no minimum balance or initial deposit.",
+    "sourceUrl": "https://www.axosbank.com/personal/bank/savings-accounts",
+    "lastCheckedAt": "2026-08-13T05:07:23Z",
+    "status": "verified",
+    "recentApyTrend": [4.21]
   }
 ]

@@ -67,5 +67,13 @@
     "savingsUrl": "https://www.flagstar.com/personal/bank/savings.html",
     "adapterId": "flagstar",
     "note": "This page is a 3-tier product comparison (Ready Savings under $10k at 0.05%, Ready Savings $10k+ promo at 3.75% for 6 months, Performance Savings $25k+ at 3.20% ongoing) rather than one single rate. We track the promo as apy (top rate) and Performance Savings as baseApy (ongoing). Checked 2026-08-13. First real candidate for the eventual multi-URL-per-bank model, since these are genuinely separate products."
+  },
+  {
+    "id": "axos",
+    "name": "Axos Bank",
+    "active": true,
+    "savingsUrl": "https://www.axosbank.com/personal/bank/savings-accounts",
+    "adapterId": "axos",
+    "note": "Page has two tabbed products, both present in the DOM at once: Axos ONE (checking+savings bundle, up to 4.21% APY on savings) and Summit Savings (standalone, no minimums, 3.75% APY). apy tracks Axos ONE (top), baseApy tracks Summit Savings (ongoing, no bundle required). Checked 2026-08-13."
   }
 ]
