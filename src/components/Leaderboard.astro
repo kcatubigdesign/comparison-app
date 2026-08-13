@@ -78,6 +78,20 @@ function sparklinePoints(trend: number[]): string {
                 stroke-linejoin="round"
               />
             </svg>
+            <div class="hidden w-44 shrink-0 lg:block">
+              {item.promoBonus ? (
+                <div>
+                  <p class="truncate text-xs font-semibold text-ink" title={item.promoBonus}>
+                    {item.promoBonus}
+                  </p>
+                  {item.offerExpirationDate && (
+                    <p class="text-xs text-ink-faint">Exp. {item.offerExpirationDate}</p>
+                  )}
+                </div>
+              ) : (
+                <span class="text-xs text-ink-faint">—</span>
+              )}
+            </div>
             <div class="ml-auto flex items-center gap-2 sm:ml-auto">
               <div class="text-right">
                 <div class="flex items-center gap-2">
