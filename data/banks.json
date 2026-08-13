@@ -59,5 +59,13 @@
     "savingsUrl": "https://www.wealthfront.com/cash",
     "adapterId": "wealthfront",
     "note": "Cash Account is a cash management account (Wealthfront is not a bank; FDIC coverage is via program banks), same category as Betterment. Checked 2026-08-13."
+  },
+  {
+    "id": "flagstar",
+    "name": "Flagstar Bank",
+    "active": true,
+    "savingsUrl": "https://www.flagstar.com/personal/bank/savings.html",
+    "adapterId": "flagstar",
+    "note": "This page is a 3-tier product comparison (Ready Savings under $10k at 0.05%, Ready Savings $10k+ promo at 3.75% for 6 months, Performance Savings $25k+ at 3.20% ongoing) rather than one single rate. We track the promo as apy (top rate) and Performance Savings as baseApy (ongoing). Checked 2026-08-13. First real candidate for the eventual multi-URL-per-bank model, since these are genuinely separate products."
   }
 ]
