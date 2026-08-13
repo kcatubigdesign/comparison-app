@@ -49,14 +49,36 @@ export const barclaysAdapter: BankAdapter = {
       offerExpirationDate = null;
     }
 
+    // When there's a promo bonus, Key Terms should explain *that*
+    // (what a user actually needs to know to qualify) rather than
+    // generic no-fee copy — there's a separate, plain-English bonus
+    // explainer paragraph on the page for exactly this. Falls back to
+    // the general fee/minimum copy when there's no bonus to explain.
     let keyTerms: string | null = null;
-    try {
-      const feeText = page
-        .getByText(/no monthly maintenance or annual fees charged for Barclays accounts/i)
-        .first();
-      keyTerms = ((await feeText.textContent({ timeout: 3000 })) ?? "").trim() || null;
-    } catch {
-      keyTerms = null;
+    if (promoBonus) {
+      try {
+        // Matches the "Bonus. Here's how:" phrasing pattern rather
+        // than the specific "$200" amount, so this keeps working if
+        // Barclays changes the offer size without changing the copy
+        // template.
+        const bonusExplainer = page.locator(".cmp-title__text p", { hasText: /Bonus\.\s*Here's how/i }).first();
+        const raw = (await bonusExplainer.textContent({ timeout: 3000 })) ?? "";
+        // Strips a footnote marker digit glued directly onto the end
+        // with no separating space (e.g. "...for 120 days.2").
+        keyTerms = raw.replace(/\.(\d)$/, ".").trim() || null;
+      } catch {
+        keyTerms = null;
+      }
+    }
+    if (!keyTerms) {
+      try {
+        const feeText = page
+          .getByText(/no monthly maintenance or annual fees charged for Barclays accounts/i)
+          .first();
+        keyTerms = ((await feeText.textContent({ timeout: 3000 })) ?? "").trim() || null;
+      } catch {
+        keyTerms = null;
+      }
     }
 
     return {

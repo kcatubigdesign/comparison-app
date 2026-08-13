@@ -33,16 +33,13 @@ rather than papering over — both documented via a `note` field on their
   "a product disappears from a page" scenario the status system was
   designed to handle, just discovered a milestone earlier than
   expected.
-- **Synchrony Bank is still active but its crawl currently fails**:
-  the site is protected by Akamai Bot Manager, which blocks or stalls
-  the crawler's connection. We're not attempting to bypass it (no
-  stealth/fingerprint-spoofing tricks) — that's a deliberate line, not
-  a gap to fix. It fails honestly and logs `extraction_failed` each
-  run rather than silently succeeding with bad data. Synchrony's entry
-  in the frontend's sample data is therefore still the original,
-  unverified Figma-mock placeholder — worth knowing since every other
-  bank's real rate came in noticeably lower than its mock value, so
-  this one's plausibly stale too.
+- **Synchrony Bank is removed from the site** (`active: false`, at the
+  user's request): its site is protected by Akamai Bot Manager, which
+  blocks or stalls the crawler's connection. We're not attempting to
+  bypass it (no stealth/fingerprint-spoofing tricks) — that's a
+  deliberate line, not a gap to fix. The adapter (`crawler/adapters/synchrony.ts`)
+  is written and correct, it just can't reach the page; re-activate in
+  `banks.json` if the block ever lifts.
 
 Banks without an adapter yet are skipped with a clear `no_adapter` log
 entry rather than guessing at extraction logic for pages nobody's
@@ -53,6 +50,14 @@ never changes.
 Everything the crawler produces is stamped `status: "needs_review"`.
 Nothing gets promoted to `verified` automatically — that's what the
 validation layer (Milestone 3) is for.
+
+**Table now has a dedicated Bonus column** (between Min. Deposit and Key
+Terms), showing the promo bonus and its expiration when a bank has one.
+When a bonus exists, `keyTerms` is written to explain that bonus's
+actual eligibility conditions (deposit amount, holding period, etc.)
+rather than generic fee copy — see the Barclays adapter for the
+pattern. Banks without a bonus keep the general fee/minimum copy in
+Key Terms.
 
 Several `savingsUrl` values in `data/banks.json` turned out to be stale
 during this pass (bank sites redirect and consolidate more often than

@@ -31,10 +31,10 @@
   {
     "id": "synchrony",
     "name": "Synchrony Bank",
-    "active": true,
+    "active": false,
     "savingsUrl": "https://www.synchrony.com/banking/high-yield-savings/",
     "adapterId": "synchrony",
-    "note": "Old synchronybank.com URL now 301-redirects here (brand consolidated to synchrony.com, checked 2026-08-13). Site is protected by Akamai Bot Manager (_abck cookie) — the crawler currently fails to load this page (HTTP/2 protocol error, then a hang/timeout after forcing HTTP/1.1). Left active since it's a legitimate crawl target, not a data problem — we're not attempting to bypass the bot protection, so this will keep failing honestly until/unless that changes."
+    "note": "Removed from the site at the user's request (2026-08-13) since we have no real verified data for it — its old sample entry was still the original unverified Figma-mock placeholder. Site is protected by Akamai Bot Manager (_abck cookie); the crawler adapter is written and correct but the connection itself is blocked or stalls (HTTP/2 protocol error, then a timeout after forcing HTTP/1.1). We're not attempting to bypass that. Re-activate if the block ever lifts or a manual rate check is added."
   },
   {
     "id": "barclays",

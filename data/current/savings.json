@@ -48,22 +48,6 @@
     "recentApyTrend": [3.00]
   },
   {
-    "bankId": "synchrony",
-    "bankName": "Synchrony Bank",
-    "productName": "High Yield Savings",
-    "apy": 5.10,
-    "interestRate": null,
-    "minOpeningDeposit": 0,
-    "minBalance": null,
-    "promoBonus": null,
-    "offerExpirationDate": null,
-    "keyTerms": "Rate may vary, fast online setup",
-    "sourceUrl": "https://www.synchrony.com/banking/high-yield-savings/",
-    "lastCheckedAt": "2026-08-12T09:00:00Z",
-    "status": "verified",
-    "recentApyTrend": [5.00, 5.02, 5.05, 5.08, 5.10]
-  },
-  {
     "bankId": "barclays",
     "bankName": "Barclays",
     "productName": "Tiered Savings",
@@ -73,9 +57,9 @@
     "minBalance": null,
     "promoBonus": "$200 Bonus after depositing $25,000",
     "offerExpirationDate": "2026-10-31",
-    "keyTerms": "There are no monthly maintenance or annual fees charged for Barclays accounts.",
+    "keyTerms": "Get a $200 Bonus. Here's how: Open a new Barclays Tiered Savings account, deposit at least $25,000 within the first 30 days of account opening and maintain that balance for 120 days.",
     "sourceUrl": "https://banking.us.barclays/tiered-savings.html",
-    "lastCheckedAt": "2026-08-13T03:32:14Z",
+    "lastCheckedAt": "2026-08-13T04:01:27Z",
     "status": "verified",
     "recentApyTrend": [3.65]
   }

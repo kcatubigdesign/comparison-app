@@ -12,7 +12,7 @@ const rows = sortByApyDesc(items);
 
 <div class="rounded-2xl border border-border-subtle bg-panel">
   <div class="overflow-x-auto">
-    <table class="w-full min-w-[720px] border-collapse text-left text-sm">
+    <table class="w-full min-w-[860px] border-collapse text-left text-sm">
       <thead>
         <tr class="border-b border-border-subtle">
           <th class="px-4 py-3 font-semibold text-ink-faint">
@@ -32,6 +32,9 @@ const rows = sortByApyDesc(items);
           </th>
           <th class="px-4 py-3 font-semibold uppercase text-xs tracking-wide text-ink-faint">
             Min. Deposit
+          </th>
+          <th class="px-4 py-3 font-semibold uppercase text-xs tracking-wide text-ink-faint">
+            Bonus
           </th>
           <th class="px-4 py-3 font-semibold uppercase text-xs tracking-wide text-ink-faint">
             Key Terms
@@ -66,11 +69,23 @@ const rows = sortByApyDesc(items);
                 <td class="px-4 py-3 text-ink-muted">{item.productName}</td>
                 <td class="px-4 py-3 font-bold text-positive">{item.apy.toFixed(2)}%</td>
                 <td class="px-4 py-3 text-ink-muted">{formatCurrency(item.minOpeningDeposit)}</td>
+                <td class="px-4 py-3">
+                  {item.promoBonus ? (
+                    <div>
+                      <p class="font-semibold text-ink">{item.promoBonus}</p>
+                      {item.offerExpirationDate && (
+                        <p class="text-xs text-ink-faint">Expires {item.offerExpirationDate}</p>
+                      )}
+                    </div>
+                  ) : (
+                    <span class="text-ink-faint">—</span>
+                  )}
+                </td>
                 <td class="px-4 py-3 text-ink-muted">{item.keyTerms}</td>
               </tr>
               <tr class="detail-row hidden bg-surface" data-group={item.bankId}>
-                <td colspan="5" class="px-4 py-4">
-                  <dl class="grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-3 lg:grid-cols-6">
+                <td colspan="6" class="px-4 py-4">
+                  <dl class="grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-4">
                     <div>
                       <dt class="text-xs uppercase tracking-wide text-ink-faint">Interest Rate</dt>
                       <dd class="text-sm text-ink">
@@ -80,14 +95,6 @@ const rows = sortByApyDesc(items);
                     <div>
                       <dt class="text-xs uppercase tracking-wide text-ink-faint">Min. Balance</dt>
                       <dd class="text-sm text-ink">{formatCurrency(item.minBalance)}</dd>
-                    </div>
-                    <div>
-                      <dt class="text-xs uppercase tracking-wide text-ink-faint">Promo Bonus</dt>
-                      <dd class="text-sm text-ink">{item.promoBonus ?? "None currently listed"}</dd>
-                    </div>
-                    <div>
-                      <dt class="text-xs uppercase tracking-wide text-ink-faint">Offer Expires</dt>
-                      <dd class="text-sm text-ink">{item.offerExpirationDate ?? "No expiration listed"}</dd>
                     </div>
                     <div>
                       <dt class="text-xs uppercase tracking-wide text-ink-faint">Last Checked</dt>

@@ -1,0 +1,37 @@
+[
+  {
+    "bankId": "ally",
+    "startedAt": "2026-08-13T04:00:37.497Z",
+    "finishedAt": "2026-08-13T04:00:41.032Z",
+    "outcome": "success",
+    "message": null
+  },
+  {
+    "bankId": "marcus",
+    "startedAt": "2026-08-13T04:00:41.088Z",
+    "finishedAt": "2026-08-13T04:00:44.248Z",
+    "outcome": "success",
+    "message": null
+  },
+  {
+    "bankId": "capital-one",
+    "startedAt": "2026-08-13T04:00:44.254Z",
+    "finishedAt": "2026-08-13T04:00:52.940Z",
+    "outcome": "success",
+    "message": null
+  },
+  {
+    "bankId": "synchrony",
+    "startedAt": "2026-08-13T04:00:53.032Z",
+    "finishedAt": "2026-08-13T04:01:25.119Z",
+    "outcome": "extraction_failed",
+    "message": "page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.synchrony.com/banking/high-yield-savings/\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "bankId": "barclays",
+    "startedAt": "2026-08-13T04:01:25.122Z",
+    "finishedAt": "2026-08-13T04:01:27.649Z",
+    "outcome": "success",
+    "message": null
+  }
+]
