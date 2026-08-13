@@ -3,17 +3,17 @@
     "bankId": "ally",
     "bankName": "Ally Bank",
     "productName": "High Yield Savings",
-    "apy": 5.35,
+    "apy": 3.00,
     "interestRate": null,
     "minOpeningDeposit": 0,
     "minBalance": null,
     "promoBonus": null,
     "offerExpirationDate": null,
-    "keyTerms": "No minimum balance, compounded daily",
+    "keyTerms": "No monthly maintenance fees or minimum balance requirements.",
     "sourceUrl": "https://www.ally.com/bank/online-savings-account/",
-    "lastCheckedAt": "2026-08-12T09:00:00Z",
+    "lastCheckedAt": "2026-08-13T02:32:10Z",
     "status": "verified",
-    "recentApyTrend": [5.20, 5.24, 5.28, 5.31, 5.35]
+    "recentApyTrend": [3.00]
   },
   {
     "bankId": "marcus",

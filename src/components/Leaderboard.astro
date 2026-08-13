@@ -37,7 +37,13 @@ function sparklinePoints(trend: number[]): string {
     {
       ranked.map((item, index) => {
         const direction = trendDirection(item.recentApyTrend);
-        const isUp = direction !== "down";
+        // "flat" covers both a genuinely unchanged rate and — more
+        // often right now — a bank we only have one real data point
+        // for. Neither should render as a green "up" arrow; that
+        // would claim a trend we don't actually have evidence for.
+        const strokeColor = direction === "up" ? "#059669" : direction === "down" ? "#2563eb" : "#94a3b8";
+        const arrowClass = direction === "up" ? "text-positive" : direction === "down" ? "text-negative" : "text-ink-faint";
+        const arrow = direction === "up" ? "↗" : direction === "down" ? "↘" : "–";
         return (
           <li class="flex flex-wrap items-center gap-4 border-b border-border-subtle px-5 py-4 last:border-b-0 sm:flex-nowrap sm:gap-6">
             <span
@@ -66,7 +72,7 @@ function sparklinePoints(trend: number[]): string {
             >
               <polyline
                 points={sparklinePoints(item.recentApyTrend)}
-                stroke={isUp ? "#059669" : "#2563eb"}
+                stroke={strokeColor}
                 stroke-width="1.5"
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -74,9 +80,7 @@ function sparklinePoints(trend: number[]): string {
             </svg>
             <div class="ml-auto flex items-center gap-2 sm:ml-auto">
               <span class="text-base font-bold text-ink">{item.apy.toFixed(2)}% APY</span>
-              <span class={isUp ? "text-positive" : "text-negative"}>
-                {isUp ? "↗" : "↘"}
-              </span>
+              <span class={arrowClass}>{arrow}</span>
             </div>
           </li>
         );
