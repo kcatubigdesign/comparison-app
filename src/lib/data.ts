@@ -13,6 +13,11 @@ const AVATAR_COLORS: Record<string, string> = {
   "capital-one": "#ef4444",
   synchrony: "#14b8a6",
   barclays: "#06b6d4",
+  betterment: "#4f46e5",
+  wealthfront: "#d97706",
+  flagstar: "#db2777",
+  axos: "#65a30d",
+  etrade: "#c026d3",
 };
 
 export function getAvatarColor(bankId: string): string {

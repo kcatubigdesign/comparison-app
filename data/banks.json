@@ -43,5 +43,21 @@
     "savingsUrl": "https://banking.us.barclays/tiered-savings.html",
     "adapterId": "barclays",
     "note": "Old banking.barclaysus.com/online-savings.html URL now redirects to a homepage listing three savings products (Tiered Savings, Online Savings, Online CDs). Pointed this at the dedicated Tiered Savings page instead — it's the one Barclays is actively promoting, checked 2026-08-13."
+  },
+  {
+    "id": "betterment",
+    "name": "Betterment",
+    "active": true,
+    "savingsUrl": "https://www.betterment.com/cash-reserve",
+    "adapterId": "betterment",
+    "note": "Cash Reserve is a cash management account (Betterment is not a bank; FDIC coverage is via program banks), not a chartered bank savings account like the others in this list — included since it's commonly compared alongside high-yield savings. Checked 2026-08-13."
+  },
+  {
+    "id": "wealthfront",
+    "name": "Wealthfront",
+    "active": true,
+    "savingsUrl": "https://www.wealthfront.com/cash",
+    "adapterId": "wealthfront",
+    "note": "Cash Account is a cash management account (Wealthfront is not a bank; FDIC coverage is via program banks), same category as Betterment. Checked 2026-08-13."
   }
 ]

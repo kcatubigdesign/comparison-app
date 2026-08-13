@@ -15,12 +15,28 @@ number live on the page). Banks without an adapter yet are still the
 original mockup figures.
 
 There's a real, working crawler in `crawler/` with adapters for **Ally
-Bank**, **Marcus by Goldman Sachs**, **Capital One**, and **Barclays**,
-each visiting the bank's actual savings page and extracting the live
-APY (and, for Barclays, a real promo bonus + expiration date — our
-first hit on those fields). The crawler writes its own separate file
-per bank (`data/current/{bankId}.json`) so it can never collide with or
-corrupt the frontend's `savings.json`.
+Bank**, **Marcus by Goldman Sachs**, **Capital One**, **Barclays**,
+**Betterment**, and **Wealthfront**, each visiting the bank's actual
+savings/cash page and extracting the live APY. The crawler writes its
+own separate file per bank (`data/current/{bankId}.json`) so it can
+never collide with or corrupt the frontend's `savings.json`.
+
+**`apy` vs `baseApy`**: several banks (Betterment, Wealthfront) advertise
+a *top* rate that only applies with a promotional boost stacked on top
+of their *ongoing* rate. `apy` is always the top rate you can actually
+get right now ("showcase the top rates, no matter what product" — this
+is also what sorting/ranking uses); `baseApy` is the ongoing rate with
+no boost applied, equal to `apy` when there's no boost to distinguish.
+The UI shows both whenever they differ (small "X% ongoing" note next to
+the headline rate, plus a "Base Rate (No Promo)" field in the row
+detail) so a temporary teaser rate never gets mistaken for a durable
+one. See `crawler/adapters/betterment.ts` for the pattern.
+
+Betterment and Wealthfront are cash management accounts, not chartered
+bank savings accounts (they're not banks — FDIC coverage runs through
+partner "program banks") — included since they're commonly compared
+alongside high-yield savings anyway; see the `note` field on their
+`data/banks.json` entries.
 
 Two banks are not fully wired up, for real reasons worth knowing about
 rather than papering over — both documented via a `note` field on their
@@ -63,6 +79,15 @@ Several `savingsUrl` values in `data/banks.json` turned out to be stale
 during this pass (bank sites redirect and consolidate more often than
 you'd expect) and were corrected as each adapter was built, with a
 `note` explaining what changed.
+
+**Known future direction (not built yet):** `banks.json` currently
+maps one bank to one URL/product. Several brands actually offer
+multiple comparable products worth tracking separately (e.g. a savings
+account *and* a CD, or multiple savings tiers at different balance
+thresholds) — eventually a bank entry should be able to point at
+several URLs/product types rather than just one, at the user's
+request. Flagging this now rather than waiting for it to become a
+bigger refactor later.
 
 ### Running the crawler
 

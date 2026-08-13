@@ -9,7 +9,13 @@ export type ExtractedFields = Pick<ProductSnapshot, "productName" | "apy"> &
   Partial<
     Pick<
       ProductSnapshot,
-      "interestRate" | "minOpeningDeposit" | "minBalance" | "promoBonus" | "offerExpirationDate" | "keyTerms"
+      | "baseApy"
+      | "interestRate"
+      | "minOpeningDeposit"
+      | "minBalance"
+      | "promoBonus"
+      | "offerExpirationDate"
+      | "keyTerms"
     >
   >;
 

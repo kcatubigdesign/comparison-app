@@ -21,7 +21,23 @@ export interface ProductSnapshot {
   bankId: string;
   bankName: string;
   productName: string;
+  /**
+   * The top rate a customer can actually get at this bank right now —
+   * "showcase the top rates, no matter what product." This may
+   * include a promotional boost (e.g. a new-customer rate bump or a
+   * higher-balance product at the same brand). Comparisons/sorting
+   * use this field.
+   */
   apy: number;
+  /**
+   * The ongoing rate with no promotional boost applied — what you
+   * actually keep earning after any promo period ends, or the best
+   * standing (non-teaser) rate at this bank. Equal to `apy` when
+   * there's no boost to distinguish. Always show both when they
+   * differ, so a temporary teaser rate never gets mistaken for a
+   * durable one.
+   */
+  baseApy: number;
   interestRate: number | null;
   minOpeningDeposit: number | null;
   minBalance: number | null;

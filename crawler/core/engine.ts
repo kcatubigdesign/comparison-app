@@ -73,6 +73,10 @@ export async function runCrawl(adapters: Record<string, BankAdapter>) {
         bankName: bank.name,
         productName: extracted.productName,
         apy: extracted.apy,
+        // Adapters only need to set baseApy when it actually differs
+        // from the top rate (i.e. there's a promo boost to
+        // distinguish) — otherwise it's just the same number.
+        baseApy: extracted.baseApy ?? extracted.apy,
         interestRate: extracted.interestRate ?? null,
         minOpeningDeposit: extracted.minOpeningDeposit ?? null,
         minBalance: extracted.minBalance ?? null,

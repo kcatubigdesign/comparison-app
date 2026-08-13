@@ -3,6 +3,7 @@
   "bankName": "Marcus by Goldman Sachs",
   "productName": "Online Savings Account",
   "apy": 3.4,
+  "baseApy": 3.4,
   "interestRate": null,
   "minOpeningDeposit": 0,
   "minBalance": null,
@@ -10,7 +11,7 @@
   "offerExpirationDate": null,
   "keyTerms": "No fees. No minimum deposit.",
   "sourceUrl": "https://www.marcus.com/us/en/savings/high-yield-savings",
-  "lastCheckedAt": "2026-08-13T04:00:44.247Z",
+  "lastCheckedAt": "2026-08-13T04:52:36.333Z",
   "status": "needs_review",
   "recentApyTrend": []
 }

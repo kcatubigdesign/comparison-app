@@ -79,8 +79,15 @@ function sparklinePoints(trend: number[]): string {
               />
             </svg>
             <div class="ml-auto flex items-center gap-2 sm:ml-auto">
-              <span class="text-base font-bold text-ink">{item.apy.toFixed(2)}% APY</span>
-              <span class={arrowClass}>{arrow}</span>
+              <div class="text-right">
+                <div class="flex items-center gap-2">
+                  <span class="text-base font-bold text-ink">{item.apy.toFixed(2)}% APY</span>
+                  <span class={arrowClass}>{arrow}</span>
+                </div>
+                {item.baseApy !== item.apy && (
+                  <p class="text-xs text-ink-faint">{item.baseApy.toFixed(2)}% ongoing</p>
+                )}
+              </div>
             </div>
           </li>
         );

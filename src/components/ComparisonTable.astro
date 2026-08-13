@@ -67,7 +67,12 @@ const rows = sortByApyDesc(items);
                   </div>
                 </td>
                 <td class="px-4 py-3 text-ink-muted">{item.productName}</td>
-                <td class="px-4 py-3 font-bold text-positive">{item.apy.toFixed(2)}%</td>
+                <td class="px-4 py-3">
+                  <span class="font-bold text-positive">{item.apy.toFixed(2)}%</span>
+                  {item.baseApy !== item.apy && (
+                    <p class="text-xs text-ink-faint">{item.baseApy.toFixed(2)}% ongoing</p>
+                  )}
+                </td>
                 <td class="px-4 py-3 text-ink-muted">{formatCurrency(item.minOpeningDeposit)}</td>
                 <td class="px-4 py-3">
                   {item.promoBonus ? (
@@ -86,6 +91,10 @@ const rows = sortByApyDesc(items);
               <tr class="detail-row hidden bg-surface" data-group={item.bankId}>
                 <td colspan="6" class="px-4 py-4">
                   <dl class="grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-4">
+                    <div>
+                      <dt class="text-xs uppercase tracking-wide text-ink-faint">Base Rate (No Promo)</dt>
+                      <dd class="text-sm text-ink">{item.baseApy.toFixed(2)}%</dd>
+                    </div>
                     <div>
                       <dt class="text-xs uppercase tracking-wide text-ink-faint">Interest Rate</dt>
                       <dd class="text-sm text-ink">

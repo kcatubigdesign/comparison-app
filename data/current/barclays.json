@@ -3,6 +3,7 @@
   "bankName": "Barclays",
   "productName": "Tiered Savings",
   "apy": 3.65,
+  "baseApy": 3.65,
   "interestRate": null,
   "minOpeningDeposit": null,
   "minBalance": null,
@@ -10,7 +11,7 @@
   "offerExpirationDate": "2026-10-31",
   "keyTerms": "Get a $200 Bonus. Here's how: Open a new Barclays Tiered Savings account, deposit at least $25,000 within the first 30 days of account opening and maintain that balance for 120 days.",
   "sourceUrl": "https://banking.us.barclays/tiered-savings.html",
-  "lastCheckedAt": "2026-08-13T04:01:27.648Z",
+  "lastCheckedAt": "2026-08-13T04:52:48.281Z",
   "status": "needs_review",
   "recentApyTrend": []
 }
